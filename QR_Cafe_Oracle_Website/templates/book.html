@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Book a Table | QR Cafe{% endblock %}
+{% block content %}
+<div class="page-intro"><p class="eyebrow">RESERVATION</p><h1>Book your table</h1><p class="muted">Enter your details and choose a date and time.</p></div>
+<form class="form-card" method="post" action="{{ url_for('book') }}">
+  <div class="form-grid">
+    <label>Full name<input name="customer_name" required maxlength="100" placeholder="e.g. Shyam Patel"></label>
+    <label>Phone number<input name="phone" required inputmode="numeric" maxlength="15" placeholder="10-digit mobile number"></label>
+    <label class="full">Cafe table<select name="table_id" required>
+      <option value="">Select a table</option>
+      {% for table in tables %}
+      <option value="{{ table.table_id }}" {% if selected_table == table.table_id %}selected{% endif %}>{{ table.table_number }} — {{ table.capacity }} seats</option>
+      {% endfor %}
+    </select></label>
+    <label>Booking date<input type="date" name="booking_date" min="{{ today }}" required></label>
+    <label>Start time<input type="time" name="start_time" required></label>
+    <label>End time<input type="time" name="end_time" required></label>
+  </div>
+  <p class="form-note">Times use the 24-hour clock. A table cannot have overlapping confirmed bookings.</p>
+  <button class="btn" type="submit">Confirm booking <span>→</span></button>
+</form>
+{% endblock %}

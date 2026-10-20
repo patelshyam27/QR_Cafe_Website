@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Database connection issue{% endblock %}
+{% block content %}
+<div class="error-card"><div class="error-icon">!</div><p class="eyebrow">DATABASE CONNECTION</p><h1>Could not load the page</h1><p>The website could not read the expected Oracle tables. Check the connection settings and make sure the required tables exist under the <code>cafe_user</code> schema.</p><details><summary>Technical error (for debugging)</summary><pre>{{ message }}</pre></details><a class="btn" href="{{ url_for('index') }}">Try again</a></div>
+{% endblock %}
